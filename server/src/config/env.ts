@@ -11,6 +11,7 @@ const envSchema = z.object({
   GEMINI_API_KEY: z.string().optional().or(z.literal('')),
   OPENAI_API_KEY: z.string().optional().or(z.literal('')),
   GROQ_API_KEY: z.string().optional().or(z.literal('')),
+  CLIENT_URL: z.string().default('*'),
 });
 
 const parseResult = envSchema.safeParse(process.env);

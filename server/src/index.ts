@@ -14,16 +14,23 @@ const app = express();
 const server = http.createServer(app);
 
 // Configure Socket.io with CORS matching our client
+const isWildcard = env.CLIENT_URL === '*';
 const io = new Server(server, {
   cors: {
-    origin: '*', // We can restrict this in production (e.g. env.CLIENT_URL)
+    origin: isWildcard ? '*' : env.CLIENT_URL,
     methods: ['GET', 'POST'],
+    credentials: !isWildcard,
   },
 });
 
 // Middlewares
 app.use(helmet());
-app.use(cors({ origin: '*' }));
+app.use(
+  cors({
+    origin: isWildcard ? '*' : env.CLIENT_URL,
+    credentials: !isWildcard,
+  })
+);
 app.use(express.json());
 
 // Database connection
