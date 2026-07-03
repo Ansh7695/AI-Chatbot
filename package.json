@@ -1,0 +1,9 @@
+{
+  "name": "cove-root",
+  "version": "1.0.0",
+  "description": "Monorepo root for Cove AI Chatroom",
+  "scripts": {
+    "build": "npm install --prefix server && npm run build --prefix server",
+    "start": "npm run start --prefix server"
+  }
+}
