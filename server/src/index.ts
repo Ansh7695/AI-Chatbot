@@ -14,10 +14,15 @@ const app = express();
 const server = http.createServer(app);
 
 // Configure Socket.io with CORS matching our client
-const isWildcard = env.CLIENT_URL === '*';
+let clientOrigin = env.CLIENT_URL.trim();
+if (clientOrigin.endsWith('/') && clientOrigin !== '/') {
+  clientOrigin = clientOrigin.slice(0, -1);
+}
+const isWildcard = clientOrigin === '*';
+
 const io = new Server(server, {
   cors: {
-    origin: isWildcard ? '*' : env.CLIENT_URL,
+    origin: isWildcard ? '*' : clientOrigin,
     methods: ['GET', 'POST'],
     credentials: !isWildcard,
   },
@@ -27,7 +32,7 @@ const io = new Server(server, {
 app.use(helmet());
 app.use(
   cors({
-    origin: isWildcard ? '*' : env.CLIENT_URL,
+    origin: isWildcard ? '*' : clientOrigin,
     credentials: !isWildcard,
   })
 );
