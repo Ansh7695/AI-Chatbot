@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --pool-deep: #0E1B2A;
+  --pool-mid: #1B3040;
+  --clay-sand: #F2E9DC;
+  --clay-coral: #E8917C;
+  --glass-foam: rgba(255, 255, 255, 0.08);
+  --glow-bioluminescent: #6FE7DD;
+}
+
+body {
+  margin: 0;
+  background-color: var(--pool-deep);
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Claymorphism styles */
+.clay-surface-sand {
+  background: var(--clay-sand);
+  border-radius: 20px;
+  box-shadow:
+    6px 6px 12px rgba(10, 20, 30, 0.4),
+    -4px -4px 10px rgba(255, 255, 255, 0.8),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 6px rgba(10, 20, 30, 0.15);
+  color: #1b3040;
+}
+
+.clay-surface-coral {
+  background: var(--clay-coral);
+  border-radius: 20px;
+  box-shadow:
+    6px 6px 12px rgba(10, 20, 30, 0.4),
+    -4px -4px 10px rgba(255, 255, 255, 0.25),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.4),
+    inset -2px -2px 6px rgba(10, 20, 30, 0.25);
+  color: #ffffff;
+}
+
+.clay-surface-pill-sand {
+  background: var(--clay-sand);
+  border-radius: 9999px;
+  box-shadow:
+    4px 4px 8px rgba(10, 20, 30, 0.4),
+    -3px -3px 8px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 4px rgba(10, 20, 30, 0.15);
+  color: #1b3040;
+}
+
+.clay-surface-pill-coral {
+  background: var(--clay-coral);
+  border-radius: 9999px;
+  box-shadow:
+    4px 4px 8px rgba(10, 20, 30, 0.4),
+    -3px -3px 8px rgba(255, 255, 255, 0.25),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.4),
+    inset -2px -2px 4px rgba(10, 20, 30, 0.25);
+  color: #ffffff;
+}
+
+.clay-input {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 2px 2px 5px rgba(0, 0, 0, 0.25),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.clay-input:focus {
+  border-color: var(--glow-bioluminescent);
+  box-shadow:
+    0 0 10px rgba(111, 231, 221, 0.3),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.05);
+}
+
+/* Glassmorphism containers */
+.glass-container {
+  background: var(--glass-foam);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.glass-container-bright {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Custom scrollbar for glass basin */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Conic gradient liquid wave animation */
+@keyframes bioluminescent-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 5px var(--glow-bioluminescent));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 15px var(--glow-bioluminescent));
+  }
+}
+
+.glow-active {
+  animation: bioluminescent-pulse 2s infinite ease-in-out;
+}
